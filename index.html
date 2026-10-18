@@ -1,187 +1,46 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RIN 画像ギャラリー</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GM 画像ギャラリー</title>
 <style>
 :root{color-scheme:light dark;--bg:#f5f6f8;--panel:#fff;--text:#18202a;--muted:#657080;--line:#d9dee7;--accent:#3867d6;--bad:#b42318}
 @media(prefers-color-scheme:dark){:root{--bg:#101318;--panel:#191e26;--text:#edf1f7;--muted:#a3adba;--line:#333b48;--accent:#8aabff;--bad:#ff8b82}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif}
-header{padding:22px 16px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
-main{max-width:1400px;margin:auto;padding:16px}
-h1{font-size:1.45rem;margin:0 0 5px}h2{font-size:1.05rem;margin:0 0 10px}
-.note{color:var(--muted);font-size:.9rem;margin:0}
-.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0}
-label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}
-input,select,button{font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px;width:100%}
-button{cursor:pointer}button.primary{background:var(--accent);color:white;border-color:transparent}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.toolbar button{width:auto}
-.summary{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.9rem;margin:12px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
-.card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.thumb{aspect-ratio:4/3;background:linear-gradient(135deg,#e6e9ef,#f7f8fa);display:flex;align-items:center;justify-content:center;position:relative}
-@media(prefers-color-scheme:dark){.thumb{background:linear-gradient(135deg,#222833,#151920)}}
-.thumb img{width:100%;height:100%;object-fit:contain;cursor:zoom-in}
-.placeholder{padding:12px;text-align:center;color:var(--muted);font-size:.85rem}
-.cardbody{padding:10px}.cardtitle{font-weight:650;overflow-wrap:anywhere}.meta{font-size:.82rem;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
-.cardactions{display:flex;gap:6px;margin-top:8px}.cardactions button{padding:7px 6px;font-size:.8rem}
-.failed{color:var(--bad)}
-dialog{width:min(96vw,1000px);max-height:95vh;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);padding:12px}
-dialog::backdrop{background:#000b}.modalhead{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
-#largeImage{display:block;max-width:100%;max-height:75vh;margin:auto;object-fit:contain}
-.small{font-size:.82rem;color:var(--muted)}
-footer{max-width:1400px;margin:auto;padding:0 16px 24px;color:var(--muted);font-size:.85rem}
-.hidden{display:none!important}
-</style>
-</head>
-<body>
-<header>
-  <h1>RIN 画像ギャラリー</h1>
-  <p class="note">キャラクター・状況コードごとに画像URLを組み立てて表示します。画像は配信元から直接読み込みます。</p>
-</header>
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif}header{padding:20px 16px 14px;background:var(--panel);border-bottom:1px solid var(--line)}main{max-width:1400px;margin:auto;padding:14px}h1{font-size:1.35rem;margin:0 0 4px}.note,.small{color:var(--muted);font-size:.85rem}.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0}label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}input,select,button{font:inherit;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px;width:100%}button{cursor:pointer}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.toolbar button{width:auto}.summary{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.9rem;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}.card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden}.thumb{aspect-ratio:4/3;background:#e9edf3;display:flex;align-items:center;justify-content:center}.thumb img{width:100%;height:100%;object-fit:contain;cursor:zoom-in}.placeholder{padding:12px;text-align:center;color:var(--muted);font-size:.85rem}.cardbody{padding:9px}.cardtitle{font-weight:650}.meta{font-size:.8rem;color:var(--muted);overflow-wrap:anywhere}.cardactions{display:flex;gap:6px;margin-top:7px}.cardactions button{padding:6px;font-size:.78rem}dialog{width:min(96vw,1000px);max-height:95vh;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);padding:12px}dialog::backdrop{background:#000b}.modalhead{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px}#largeImage{display:block;max-width:100%;max-height:75vh;margin:auto;object-fit:contain}footer{max-width:1400px;margin:auto;padding:0 16px 24px;color:var(--muted);font-size:.82rem}
+</style></head><body>
+<header><h1>GM 画像ギャラリー</h1><p class="note">キャラクターと状況コードを選んで画像を表示。画像は配信元から直接読み込みます。</p></header>
 <main>
-  <section class="controls" aria-label="検索条件">
-    <div><label for="character">キャラクター</label><select id="character">
-      <option value="f1">エリ (f1)</option>
-      <option value="f2">デリン (f2)</option>
-      <option value="f3">ブレア (f3)</option>
-      <option value="f4">ラヴィナ (f4)</option>
-      <option value="m1">オメル (m1)</option>
-      <option value="n2">n2（キャラクター名不明）</option>
-      <option value="n3">n3（キャラクター名不明）</option>
-      <option value="n4">n4（キャラクター名不明）</option>
-      <option value="n5">n5（キャラクター名不明）</option>
-      <option value="p">特殊状況 (p)</option>
-    </select></div>
-    <div><label for="category">状況カテゴリ</label><select id="category">
-      <option value="all">すべてのカテゴリ</option>
-      <option value="表情">表情</option>
-      <option value="表情・演出">表情・演出</option>
-      <option value="日常・演出">日常・演出</option>
-      <option value="日常シーン">日常シーン</option>
-      <option value="ファンタジー">ファンタジー</option>
-      <option value="成人向け">成人向け</option>
-      <option value="特殊状況">特殊状況</option>
-    </select></div>
-    <div><label for="search">コード・説明で検索</label><input id="search" type="search" placeholder="例：笑い、n01、114"></div>
-    <div><label for="status">画像の状態</label><select id="status"><option value="all">すべて</option><option value="loaded">読み込み成功</option><option value="failed">読み込み失敗</option><option value="pending">読み込み中</option></select></div>
-  </section>
-  <div class="toolbar">
-    <button id="showAll" class="primary">選択中のキャラの全コードを表示</button>
-    <button id="retry">失敗画像を再読み込み</button>
-    <button id="copyList">表示中の画像URLをコピー</button>
-  </div>
-  <div class="summary"><span id="summary">準備中…</span><span class="small">画像をタップすると拡大表示</span></div>
-  <section id="grid" class="grid" aria-live="polite"></section>
-</main>
-<footer>
-  <p><strong>コードの解釈について：</strong>「n=2,3,4,5」はURLの第1階層に使うキャラクターコード <code>n2</code>、<code>n3</code>、<code>n4</code>、<code>n5</code> と解釈しています。これらには状況コード <code>n01</code>〜<code>n35</code> を組み合わせます。もしURL例と異なる場合は、下の設定を変更してください。</p>
-  <p>このHTMLは画像一覧を自動検出するものではなく、指定されたコードのURLを順番に試します。404・配信側の制限・通信エラーなどで画像が表示されない場合があります。読み込み失敗は「画像なし」と断定せず「取得できない」と表示します。</p>
-  <p>一部の成人向けシーン名は、一覧での表示を簡略化しています。画像の内容・提供元の利用条件は各自で確認してください。</p>
-</footer>
-<dialog id="modal">
-  <div class="modalhead"><div><strong id="modalTitle"></strong><div id="modalUrl" class="small"></div></div><button id="closeModal" style="width:auto">閉じる</button></div>
-  <img id="largeImage" alt="拡大画像">
-  <div class="toolbar"><button id="openOriginal">原画像を開く</button><button id="copyCurrent">URLをコピー</button></div>
-</dialog>
+<section class="controls">
+<div><label for="character">キャラクター</label><select id="character"></select></div>
+<div><label for="category">カテゴリ</label><select id="category"><option value="all">すべて</option><option>表情・感情</option><option>日常・衣装</option><option>成人向けシーン</option><option>等級</option></select></div>
+<div><label for="search">コード・名前で検索</label><input id="search" type="search" placeholder="例：笑顔、59、f14"></div>
+<div><label for="status">画像の状態</label><select id="status"><option value="all">すべて</option><option value="loaded">読み込み成功</option><option value="failed">読み込み失敗</option><option value="pending">読み込み中</option></select></div>
+</section>
+<div class="toolbar"><button id="showAll">選択中のキャラを表示</button><button id="retry">失敗画像を再読み込み</button><button id="copyList">表示中のURLをコピー</button></div>
+<div class="summary"><span id="summary">準備中…</span><span class="small">画像をタップすると拡大</span></div><section id="grid" class="grid"></section>
+</main><footer><p>画像が表示されない場合、URLが存在しない・配信元の制限・通信エラーなどの可能性があります。画像一覧は指定コードを順番に試します。</p><p>このページをGitHub Pagesで公開すると、URLや画像一覧を第三者が閲覧できる場合があります。</p></footer>
+<dialog id="modal"><div class="modalhead"><div><strong id="modalTitle"></strong><div id="modalUrl" class="small"></div></div><button id="closeModal" style="width:auto">閉じる</button></div><img id="largeImage" alt="拡大画像"><div class="toolbar"><button id="openOriginal">原画像を開く</button><button id="copyCurrent">URLをコピー</button></div></dialog>
 <script>
-const BASE = "https://cdn.beebeb.net/RIN";
-
-// 状況コードの説明。成人向け項目は表示名を簡略化しています。
-const commonScenes = [
-  ["1","笑い","表情"],["2","悲しみ","表情"],["3","驚き","表情"],["4","怒り","表情"],
-  ["5","悩み","表情"],["6","好奇心","表情"],["7","恐怖","表情"],["8","真剣な顔","表情"],
-  ["9","だるさ","表情"],["10","見栄","表情"],["11","恥ずかしさ","表情"],["12","拗ねる","表情"],
-  ["13","誘惑","表情・演出"],["14","キス","日常・演出"],["15","焚き火の前","日常シーン"],
-  ["16","酒場で酒を飲む","日常シーン"],["17","夜の海を眺める","日常シーン"],
-  ["101","成人向けシーン 101","成人向け"],["102","成人向けシーン 102","成人向け"],
-  ["103","成人向けシーン 103","成人向け"],["104","成人向けシーン 104","成人向け"],
-  ["105","成人向けシーン 105","成人向け"],["106","成人向けシーン 106","成人向け"],
-  ["107","身体接触シーン 107","成人向け"],["108","身体接触シーン 108","成人向け"],
-  ["109","ファンタジー遭遇 109","成人向け"],["110","ファンタジー遭遇 110","成人向け"],
-  ["111","ファンタジー遭遇 111","成人向け"],["112","ミミック遭遇","ファンタジー"],
-  ["113","ミミック遭遇 113","ファンタジー"],["114","温泉を楽しむ","日常シーン"],
-  ["115","成人向け温泉シーン","成人向け"],["116","テント内シルエット 116","成人向け"],
-  ["117","テント内シルエット 117","成人向け"],["118","覗き見シーン","成人向け"],
-  ["119","全身ポーズ 119","成人向け"],["120","夜の海のシーン","成人向け"],
-  ["121","複数人シーン","成人向け"]
+const BASE='https://ssm99008.com/GM/';
+const characters=[
+['f14','ビビ'],['f1','ユリア'],['m2','ヴラド・ローゼン'],['f5','ミユ'],['f9','ト・ファリョン'],['f11','エリナ'],['f17','リゼル・アルカナ'],['f15','ハクサキ・ヨリヒメ'],['f20','ウン・ソルファ'],['f22','ホン・サリン'],['m5','リュ・シオン'],['f25','イム・ハウン'],['m6','ソ・チョンウン'],['f26','カルメン・ゴールド'],['m7','ノヴェンバー・ホワイト'],['f28','レア・ブルーマリン'],['f29','ビナ'],['f30','ホン・ファヨン'],['f31','エリー'],['f33','ソ・ファリョン'],['f36','ラブ'],['f37','マリカ'],['f38','チョロク'],['f39','ヴィオラ'],
+['m1','カン・ドユン'],['f6','ソ・ナビ'],['m3','チャ・ユゴン'],['f2','イ・ソリョン'],['f21','ハ・ユンソ'],['m4','チャン・テサン'],['f35','アストラ'],['f4','ペク・ハヨン'],['f3','カン・ハリン'],['f18','ホン・セリン'],['f10','チン・ベクリョン'],['f7','クレア・ベル'],['f13','アステル'],['f8','エメラ'],['f12','セラフィナ'],['f19','リア・ベル'],['m9','ファウスト'],['f16','アカネ・ルシフェラ'],['f23','セレネ・ノクス'],['f24','パイモン'],['f27','セラフィン・ノワール'],['m8','カイザー・ヴォルク'],['f32','ヨン・ファリン'],['f34','ルナ・ブランカ'],['p0','魔獣（等級別）']
 ];
-const nScenes = [
- ["n01","成人向けポーズ 01"],["n02","成人向けポーズ 02"],["n03","成人向けポーズ 03"],
- ["n04","成人向けポーズ 04"],["n05","成人向けポーズ 05"],["n06","成人向けポーズ 06"],
- ["n07","成人向けポーズ 07"],["n08","成人向けポーズ 08"],["n09","成人向けポーズ 09"],
- ["n10","成人向けポーズ 10"],["n11","成人向けポーズ 11"],["n12","成人向けポーズ 12"],
- ["n13","成人向けポーズ 13"],["n14","成人向けポーズ 14"],["n15","成人向けポーズ 15"],
- ["n16","成人向けポーズ 16"],["n17","成人向けポーズ 17"],["n18","成人向けポーズ 18"],
- ["n19","成人向けポーズ 19"],["n20","成人向けポーズ 20"],["n21","成人向けポーズ 21"],
- ["n22","成人向けポーズ 22"],["n23","成人向けポーズ 23"],["n24","成人向けポーズ 24"],
- ["n25","成人向けポーズ 25"],["n26","成人向けポーズ 26"],["n27","成人向けポーズ 27"],
- ["n28","成人向けポーズ 28"],["n29","キス"],["n30","成人向けポーズ 30"],
- ["n31","ポーズ 31"],["n32","親密な接触 32"],["n33","親密な接触 33"],
- ["n34","成人向けポーズ 34"],["n35","成人向けポーズ 35"]
+const scenes=[
+['1','基本','表情・感情'],['2','喜び','表情・感情'],['3','笑顔','表情・感情'],['4','悲しみ','表情・感情'],['5','驚き','表情・感情'],['6','怒り','表情・感情'],['7','軽蔑','表情・感情'],['8','悩み','表情・感情'],['9','興奮／テンション上昇','表情・感情'],['10','照れ','表情・感情'],['11','困惑','表情・感情'],['12','疑問','表情・感情'],['13','恐怖','表情・感情'],['14','無表情／真顔','表情・感情'],['15','嫌悪','表情・感情'],['16','憂鬱','表情・感情'],['17','号泣','表情・感情'],['18','戦闘／能力1','表情・感情'],['19','戦闘／能力2','表情・感情'],['20','敗北','表情・感情'],['21','拗ねる','日常・衣装'],['22','キス','日常・衣装'],['23','誘惑','日常・衣装'],['24','頭を撫でる','日常・衣装'],['25','腕を組む','日常・衣装'],['26','食事','日常・衣装'],['27','飲酒','日常・衣装'],['28','性的興奮','成人向けシーン'],['29','ヤンデレ','日常・衣装'],['30','妊娠／臨月','日常・衣装'],['31','出産／育児','日常・衣装'],['32','全裸自撮り','成人向けシーン'],['33','シャワー','日常・衣装'],['34','社交パーティードレス','日常・衣装'],['35','プール／ビキニ','日常・衣装'],['36','バニーガール','日常・衣装'],['37','逆バニー','日常・衣装'],['38','裸エプロン','成人向けシーン'],
+['59','ディープキス','成人向けシーン'],['60','胸への愛撫','成人向けシーン'],['61','胸を舐める／吸う','成人向けシーン'],['62','浴室セックス','成人向けシーン'],['63','フェラ','成人向けシーン'],['64','フェラ中の射精','成人向けシーン'],['65','正常位（導入）','成人向けシーン'],['66','正常位（絶頂）','成人向けシーン'],['67','正常位（射精）','成人向けシーン'],['68','後背位（導入）','成人向けシーン'],['69','後背位（絶頂）','成人向けシーン'],['70','後背位（射精）','成人向けシーン'],['71','騎乗位（導入）','成人向けシーン'],['72','騎乗位（絶頂）','成人向けシーン'],['73','騎乗位（射精）','成人向けシーン'],['74','対面座位','成人向けシーン'],['75','フルネルソン','成人向けシーン'],['76','対面立ちバック','成人向けシーン'],['77','スパンキング','成人向けシーン'],['78','側位','成人向けシーン'],['79','膣内射精後','成人向けシーン'],['80','セックス後の余韻','成人向けシーン'],['81','クンニリングス','成人向けシーン'],['82','自慰','成人向けシーン'],['83','フィンガリング','成人向けシーン'],['84','交配プレス','成人向けシーン'],['85','ハンドジョブ','成人向けシーン'],['86','授乳手コキ','成人向けシーン'],['87','腋','成人向けシーン'],['88','フェイスシッティング','成人向けシーン'],['89','シックスナイン（69）','成人向けシーン'],['90','リムジョブ','成人向けシーン'],['91','アマゾンプレス','成人向けシーン'],['92','足コキ','成人向けシーン'],['93','絶頂','成人向けシーン'],['94','アナルセックス','成人向けシーン'],['95','アナル射精','成人向けシーン'],['96','立位','成人向けシーン'],['97','立ったまま側位','成人向けシーン'],['98','背面座位','成人向けシーン'],['99','パイズリ','成人向けシーン'],['100','通話中・正常位','成人向けシーン'],['101','通話中・後背位','成人向けシーン'],['102','通話中・騎乗位','成人向けシーン']
 ];
-const characters = [
- {code:"f1",name:"エリ",scenes:commonScenes},
- {code:"f2",name:"デリン",scenes:commonScenes},
- {code:"f3",name:"ブレア",scenes:commonScenes},
- {code:"f4",name:"ラヴィナ",scenes:commonScenes},
- {code:"m1",name:"オメル",scenes:commonScenes.filter(s=>Number(s[0])>=1&&Number(s[0])<=10)},
- {code:"n2",name:"n2（キャラクター名不明）",scenes:nScenes.map(s=>[s[0],s[1],"成人向け"])},
- {code:"n3",name:"n3（キャラクター名不明）",scenes:nScenes.map(s=>[s[0],s[1],"成人向け"])},
- {code:"n4",name:"n4（キャラクター名不明）",scenes:nScenes.map(s=>[s[0],s[1],"成人向け"])},
- {code:"n5",name:"n5（キャラクター名不明）",scenes:nScenes.map(s=>[s[0],s[1],"成人向け"])},
- {code:"p",name:"特殊状況",scenes:[["0","Uの罠に引っかかる","特殊状況"],["1","鍛冶屋のドワーフ","特殊状況"]]}
-];
-const $ = id => document.getElementById(id);
-const state = new Map();
-let visibleCards = [];
-let currentModalUrl = "";
-function urlFor(ch, sc){return `${BASE}/${encodeURIComponent(ch)}/${encodeURIComponent(sc)}.png`;}
-function init(){
- const cs=$("character");
- // 選択肢はHTMLにも直接記述し、スクリプト実行前でも空欄にならないようにする。
- if(cs.options.length===0){characters.forEach(c=>{const o=document.createElement("option");o.value=c.code;o.textContent=`${c.name} (${c.code})`;cs.append(o);});}
- cs.value="f1";
- cs.addEventListener("change",render);$("category").addEventListener("change",render);$("search").addEventListener("input",render);$("status").addEventListener("change",render);
- $("showAll").addEventListener("click",render);$("retry").addEventListener("click",()=>{visibleCards.filter(c=>state.get(c.url)?.status==="failed").forEach(c=>loadCard(c,true));});
- $("copyList").addEventListener("click",async()=>{const urls=visibleCards.map(c=>c.url).join("\n");await copyText(urls);});
- $("closeModal").addEventListener("click",()=>$("modal").close());
- $("openOriginal").addEventListener("click",()=>window.open(currentModalUrl,"_blank","noopener"));
- $("copyCurrent").addEventListener("click",()=>copyText(currentModalUrl));
- render();
-}
-function render(){
- const ch=characters.find(c=>c.code===$("character").value)||characters[0];
- const cat=$("category").value, query=$("search").value.trim().toLowerCase(), filter=$("status").value;
- const grid=$("grid");grid.innerHTML="";visibleCards=[];
- const items=ch.scenes.filter(s=>(cat==="all"||s[2]===cat)&&(!query||`${s[0]} ${s[1]} ${s[2]} ${ch.code}`.toLowerCase().includes(query)));
- items.forEach(s=>{
-   const url=urlFor(ch.code,s[0]);const st=state.get(url)||{status:"pending"};
-   if(filter!=="all"&&filter!==st.status)return;
-   const card=document.createElement("article");card.className="card";
-   const thumb=document.createElement("div");thumb.className="thumb";
-   const img=document.createElement("img");img.alt=`${ch.name} ${s[1]}`;img.loading="lazy";img.src=url;
-   img.addEventListener("load",()=>{state.set(url,{status:"loaded"});updateCardStatus(card,url);updateSummary();});
-   img.addEventListener("error",()=>{state.set(url,{status:"failed"});img.remove();const p=document.createElement("div");p.className="placeholder failed";p.textContent="画像を取得できません";thumb.append(p);updateCardStatus(card,url);updateSummary();});
-   thumb.append(img);thumb.addEventListener("click",()=>openModal(url,`${ch.code}/${s[0]} — ${s[1]}`));
-   const body=document.createElement("div");body.className="cardbody";
-   const title=document.createElement("div");title.className="cardtitle";title.textContent=s[1];
-   const meta=document.createElement("div");meta.className="meta";meta.textContent=`${ch.code}/${s[0]} · ${s[2]}`;
-   const stline=document.createElement("div");stline.className="meta statusline";stline.textContent=st.status==="loaded"?"読み込み成功":st.status==="failed"?"取得できない画像":"読み込み中…";
-   const actions=document.createElement("div");actions.className="cardactions";
-   const open=document.createElement("button");open.textContent="原画像";open.addEventListener("click",()=>window.open(url,"_blank","noopener"));
-   const copy=document.createElement("button");copy.textContent="URLコピー";copy.addEventListener("click",()=>copyText(url));
-   actions.append(open,copy);body.append(title,meta,stline,actions);card.append(thumb,body);grid.append(card);
-   const item={url,card,scene:s,character:ch};visibleCards.push(item);state.set(url,state.get(url)||{status:"pending"});
- });
- updateSummary();
-}
-function updateCardStatus(card,url){const line=card.querySelector(".statusline");const s=state.get(url)?.status||"pending";if(line)line.textContent=s==="loaded"?"読み込み成功":s==="failed"?"取得できない画像":"読み込み中…";}
-function updateSummary(){const loaded=[...state.values()].filter(x=>x.status==="loaded").length;const failed=[...state.values()].filter(x=>x.status==="failed").length;$("summary").textContent=`表示中 ${visibleCards.length}件 · 読み込み成功 ${loaded}件 · 取得失敗 ${failed}件`;}
-function openModal(url,title){currentModalUrl=url;$("modalTitle").textContent=title;$("modalUrl").textContent=url;$("largeImage").src=url;$("modal").showModal();}
-async function copyText(text){try{await navigator.clipboard.writeText(text);alert("コピーしました");}catch(e){prompt("コピーしてください",text);}}
-init();
-</script>
-</body>
-</html>
+const el=id=>document.getElementById(id);let currentUrl='';
+function isMale(code){return code.startsWith('m')&&code!=='魔獣'}
+function getScenes(code){if(code==='p0')return Array.from({length:6},(_,i)=>[String(i+1),'等級'+(i+1),'等級']);if(isMale(code))return scenes.filter(s=>Number(s[0])>=1&&Number(s[0])<=20);return scenes}
+function urlFor(code,scene){return `${BASE}${code}/${scene}.png`}
+function init(){characters.forEach(([code,name])=>{const o=document.createElement('option');o.value=code;o.textContent=`${name}（${code}）`;el('character').append(o)});el('character').value='f14';render()}
+function render(){const code=el('character').value,category=el('category').value,search=el('search').value.trim().toLowerCase(),status=el('status').value;const list=getScenes(code).filter(s=>(category==='all'||s[2]===category)&&(!search||`${s[0]} ${s[1]} ${code}`.toLowerCase().includes(search)));const grid=el('grid');grid.innerHTML='';let shown=0;list.forEach(s=>{const url=urlFor(code,s[0]);const card=document.createElement('article');card.className='card';card.dataset.url=url;card.dataset.state='pending';card.innerHTML=`<div class="thumb"><div class="placeholder">読み込み中…</div></div><div class="cardbody"><div class="cardtitle">${esc(s[1])}</div><div class="meta">コード ${esc(s[0])}</div><div class="cardactions"><button class="zoom">拡大</button><button class="copy">URLコピー</button></div></div>`;const img=new Image();img.alt=`${code} ${s[1]}`;img.loading=shown<12?'eager':'lazy';img.src=url;img.onload=()=>{card.dataset.state='loaded';const thumb=card.querySelector('.thumb');thumb.innerHTML='';thumb.append(img);applyStatus(card)};img.onerror=()=>{card.dataset.state='failed';card.querySelector('.thumb').innerHTML='<div class="placeholder">画像を取得できません</div>';applyStatus(card)};card.querySelector('.zoom').onclick=()=>openModal(url,`${code} / ${s[0]} ${s[1]}`);card.querySelector('.copy').onclick=()=>copy(url);img.onclick=()=>openModal(url,`${code} / ${s[0]} ${s[1]}`);grid.append(card);shown++});el('summary').textContent=`${characters.find(c=>c[0]===code)?.[1]||code}：${shown}件を表示`;applyAllStatus()}
+function applyStatus(card){const f=el('status').value;card.style.display=(f==='all'||card.dataset.state===f)?'':'none';updateCount()}
+function applyAllStatus(){document.querySelectorAll('.card').forEach(applyStatus)}
+function updateCount(){const cards=[...document.querySelectorAll('.card')];const visible=cards.filter(c=>c.style.display!=='none');const loaded=visible.filter(c=>c.dataset.state==='loaded').length;const failed=visible.filter(c=>c.dataset.state==='failed').length;const pending=visible.filter(c=>c.dataset.state==='pending').length;el('summary').textContent=el('summary').textContent.split(' | ')[0]+` | 表示 ${visible.length}件（成功 ${loaded}／失敗 ${failed}／読込中 ${pending}）`}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function copy(text){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>alert('コピーしました')).catch(()=>fallbackCopy(text))}else fallbackCopy(text)}function fallbackCopy(text){const t=document.createElement('textarea');t.value=text;document.body.append(t);t.select();try{document.execCommand('copy');alert('コピーしました')}catch(e){prompt('このURLをコピーしてください',text)}t.remove()}
+function openModal(url,title){currentUrl=url;el('modalTitle').textContent=title;el('modalUrl').textContent=url;el('largeImage').src=url;el('modal').showModal()}
+el('character').onchange=render;el('category').onchange=render;el('search').oninput=render;el('status').onchange=applyAllStatus;el('showAll').onclick=render;el('retry').onclick=()=>{document.querySelectorAll('.card').forEach(c=>{if(c.dataset.state==='failed'){c.dataset.state='pending';c.querySelector('.thumb').innerHTML='<div class="placeholder">再読み込み中…</div>';const img=new Image();img.onload=()=>{c.dataset.state='loaded';c.querySelector('.thumb').innerHTML='';c.querySelector('.thumb').append(img);img.onclick=()=>openModal(c.dataset.url,'画像');applyStatus(c)};img.onerror=()=>{c.dataset.state='failed';c.querySelector('.thumb').innerHTML='<div class="placeholder">画像を取得できません</div>';applyStatus(c)};img.src=c.dataset.url}})};el('copyList').onclick=()=>copy([...document.querySelectorAll('.card')].filter(c=>c.style.display!=='none').map(c=>c.dataset.url).join('\n'));el('closeModal').onclick=()=>el('modal').close();el('openOriginal').onclick=()=>window.open(currentUrl,'_blank','noopener');el('copyCurrent').onclick=()=>copy(currentUrl);init();
+</script></body></html>
